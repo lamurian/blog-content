@@ -9,8 +9,8 @@ description: >
   resemble a normal distribution. In such a case, it becomes impertinent to
   assume normality in our data. Even though parametric tests are quite robust
   against non-normal data to a certain degree, it still requires a large number
-  of sample. With larger $n$ and homogeneous intergroup variance, the parametric
-  test may have a sufficient power to correctly reject the $H_0$. However, if we
+  of sample. With larger `\(n\)` and homogeneous intergroup variance, the parametric
+  test may have a sufficient power to correctly reject the `\(H_0\)`. However, if we
   cannot satisfy the required assumption, we need to drop our hypothesized claim
   of population parameters. In other words, we are employing a non-parametric
   test to measure observed differences.
@@ -22,8 +22,8 @@ summary: >
   resemble a normal distribution. In such a case, it becomes impertinent to
   assume normality in our data. Even though parametric tests are quite robust
   against non-normal data to a certain degree, it still requires a large number
-  of sample. With larger $n$ and homogeneous intergroup variance, the parametric
-  test may have a sufficient power to correctly reject the $H_0$. However, if we
+  of sample. With larger `\(n\)` and homogeneous intergroup variance, the parametric
+  test may have a sufficient power to correctly reject the `\(H_0\)`. However, if we
   cannot satisfy the required assumption, we need to drop our hypothesized claim
   of population parameters. In other words, we are employing a non-parametric
   test to measure observed differences.
@@ -39,22 +39,13 @@ draft: false
 
 [Slide](https://lamurian.rbind.io/note/biostat-ukrida/08-nonpar-meandiff/slide)
 
-```{r init, echo=FALSE}
-pkgs <- c("magrittr", "ggplot2", "kableExtra")
-pkgs.load <- sapply(pkgs, library, character.only=TRUE)
-knitr::opts_chunk$set(echo=TRUE, eval=TRUE, message=FALSE, warning=FALSE, error=FALSE,
-	dev="png", dpi=300, fig.width=10, fig.height=5, out.width="100%"
-)
-options(digits=3)
-```
-
 A parametric test requires us to assume or hypothesize parameters in a
 population. Often, a small sample size or a highly-skewed distribution does not
 resemble a normal distribution. In such a case, it becomes impertinent to
 assume normality in our data. Even though parametric tests are quite robust
 against non-normal data to a certain degree, it still requires a large number
-of sample. With larger $n$ and homogeneous intergroup variance, the parametric
-test may have a sufficient power to correctly reject the $H_0$. However, if we
+of sample. With larger `\(n\)` and homogeneous intergroup variance, the parametric
+test may have a sufficient power to correctly reject the `\(H_0\)`. However, if we
 cannot satisfy the required assumption, we need to drop our hypothesized claim
 of population parameters. In other words, we are employing a non-parametric
 test to measure observed differences.
@@ -71,33 +62,12 @@ nor symmetricity, thus providing a legible approach for data unsuitable for
 parametric tests. However, having a more lenient assumption means to neglect
 some information in the data, resulting in a lower statistical power compared to
 the parametric test given its assumptions fulfilled. Following figures
-represent how the $\mu$ not describing the central tendency in a skewed data
+represent how the `\(\mu\)` not describing the central tendency in a skewed data
 (bottom).
 
-```{r plt.data, echo=FALSE}
+<img src="{{< blogdown/postref >}}index_files/figure-html/plt.data-1.png" width="100%" />
 
-x <- seq(-3, 3, 0.05)
-y <- dnorm(x, 0, 1)
-tbl <- data.frame(x=x, y=y)
-ggplot(tbl, aes(x=x, y=y)) + theme_minimal() + geom_line() +
-	geom_vline(xintercept=mean(x), linetype=2) +
-	annotate("text", label=c("mu", "M"), x=mean(x)+0.1, y=c(0.3, 0.28), hjust="left", parse=TRUE) +
-	labs(title="Standardized normal distribution", y="Probability", x="Observed event")
-
-```
-
-```{r plt.data.skew, echo=FALSE}
-
-set.seed(1)
-x <- rchisq(300, 5)
-tbl <- data.frame(x=x)
-ggplot(tbl, aes(x=x, y=..density..)) + theme_minimal() +
-	geom_density() +
-	geom_vline(xintercept=c(mean(x), median(x)), linetype=2) +
-	annotate("text", label=c("mu", "M"), x=c(mean(x), median(x))+0.1, y=(0.1), hjust="left", parse=TRUE) +
-	labs(title="Skewed data", y="Probability", x="Observed event")
-
-```
+<img src="{{< blogdown/postref >}}index_files/figure-html/plt.data.skew-1.png" width="100%" />
 
 As a summary, we should consider using a non-parametric test in the case of
 having a small sample size. If our data is not asymptotically normal, then
@@ -105,16 +75,16 @@ employing a non-parametric test might be a more appropriate step. The presence
 of extreme outliers or severe skewness may impair the parametric test, so using
 a non-parametric test is desirable. In conducting a non-parametric test, we
 hypothesize on the difference in our observation compared to its reference. To
-describe the difference, we shall use its median value $M$, therefore:
+describe the difference, we shall use its median value `\(M\)`, therefore:
 
-- $H_0:\ M_1 = M_2$
-- $H_1:\ M_1 \neq M_2$
+-   `\(H_0:\ M_1 = M_2\)`
+-   `\(H_1:\ M_1 \neq M_2\)`
 
 # One-Sample Test
 
 Similar to the parametric test, in one-sample test we only have one group of
 observation. We would like to know whether our group deviates from the
-hypothesized median. We may employ two type of test, i.e. a one-sample sign
+hypothesized median. We may employ two type of test, i.e. a one-sample sign
 test and one-sample Wilcoxon signed rank test. Only the one-sample Wilcoxon
 test is analogous to the one-sample T-Test
 
@@ -124,74 +94,87 @@ A one-sample sign test does not assume normality nor symmetric distribution. It
 is useful in a skewed data, where the statistics follow a binomial
 distribution. In fact, it is an extension to the binomial test, which we have
 discussed in the [previous lecture](https://lamurian.rbind.io/note/biostat-ukrida/05-independence/).
-In this test, we know that our statistics $B_s \sim B(n, p)$ with $0=0.5$. We
-set the probability $p=0.5$ because the random chance of having $M_1 \neq M_0$
+In this test, we know that our statistics `\(B_s \sim B(n, p)\)` with `\(0=0.5\)`. We
+set the probability `\(p=0.5\)` because the random chance of having `\(M_1 \neq M_0\)`
 is 0.5, as the median is the midpoint.
 
 To calculate one-sample sign test, we need to:
 
-- Find the residual between our observation and hypothesized median
-- Omit all 0
-- Disregard the magnitude, take only its sign
-- Calculate the frequency of positive and negative signs
-- Let $B_s$ be the resultant $\to B_s \sim B(n, 0.5)$
+-   Find the residual between our observation and hypothesized median
+-   Omit all 0
+-   Disregard the magnitude, take only its sign
+-   Calculate the frequency of positive and negative signs
+-   Let `\(B_s\)` be the resultant `\(\to B_s \sim B(n, 0.5)\)`
 
-Essentially, we only have two outcome of interest, i.e. having a positive or
+Essentially, we only have two outcome of interest, i.e. having a positive or
 negative sign. Assuming I.I.D in each of our observation, we have a Bernoulli
-trial with $p=0.5$, such that we can model our probability as a Binomial
+trial with `\(p=0.5\)`, such that we can model our probability as a Binomial
 distribution.
 
 ### Example, please?
 
-```{r one.sample.sign1}
-
+``` r
 # Generate a skewed data using a Chi-squared distribution
 set.seed(1)
 x <- rchisq(10, 4) %T>% print()
-
 ```
 
-In this example, we have $X \sim \chi^2(4)$, presenting as a skewed data.
-Should we let $H_0$ be $M=5$ and we are interested to conduct a two-tailed
+    ##  [1] 1.66 7.14 6.93 4.10 7.77 5.08 4.58 2.30 1.36 1.67
+
+In this example, we have `\(X \sim \chi^2(4)\)`, presenting as a skewed data.
+Should we let `\(H_0\)` be `\(M=5\)` and we are interested to conduct a two-tailed
 test, we can proceed using a one-sample sign test.
 
-```{r one.sample.sign2}
-
+``` r
 # Set M and find the residual (difference)
 M <- 5
 diff <- {x - M}
 
 # Make a data frame
 tbl <- data.frame(x=x, abs.diff=abs(diff), sign=sign(diff))
-
 ```
 
-```{r one.sample.sign3, echo=FALSE}
+|    x | abs.diff | sign |
+|-----:|---------:|-----:|
+| 1.66 |    3.338 |   -1 |
+| 7.14 |    2.142 |    1 |
+| 6.93 |    1.926 |    1 |
+| 4.10 |    0.898 |   -1 |
+| 7.77 |    2.771 |    1 |
+| 5.08 |    0.081 |    1 |
+| 4.58 |    0.424 |   -1 |
+| 2.30 |    2.701 |   -1 |
+| 1.36 |    3.638 |   -1 |
+| 1.67 |    3.329 |   -1 |
 
-knitr::kable(tbl, format="simple")
-
-```
-
-```{r one.sample.sign4}
-
+``` r
 # Perform a binomial test
 res <- lapply(c(-1, 1), function(sign) {
-	binom.test(sum(tbl$sign==sign), nrow(tbl), 0.5) %>%
-		broom::tidy()
+    binom.test(sum(tbl$sign==sign), nrow(tbl), 0.5) %>%
+        broom::tidy()
 })
 
 # Two-tailed test on sign=-1
 knitr::kable(res[[1]], format="simple")
+```
 
+| estimate | statistic | p.value | parameter | conf.low | conf.high | method              | alternative |
+|---------:|----------:|--------:|----------:|---------:|----------:|:--------------------|:------------|
+|      0.6 |         6 |   0.754 |        10 |    0.262 |     0.878 | Exact binomial test | two.sided   |
+
+``` r
 # Two-tailed test on sign=1
 knitr::kable(res[[2]], format="simple")
-
 ```
+
+| estimate | statistic | p.value | parameter | conf.low | conf.high | method              | alternative |
+|---------:|----------:|--------:|----------:|---------:|----------:|:--------------------|:------------|
+|      0.4 |         4 |   0.754 |        10 |    0.122 |     0.738 | Exact binomial test | two.sided   |
 
 As we have demonstrated, a non-parametric test is straightforward and simple.
 Statistics obtained from a one-sample sign test only taking into account the
 difference and neglecting the magnitude. This test is suitable to avoid
-incorrectly rejecting the $H_0$ due to biased calculation in the presence of
+incorrectly rejecting the `\(H_0\)` due to biased calculation in the presence of
 severe skewness.
 
 ## One-Sample Wilcoxon Signed Rank Test
@@ -219,33 +202,60 @@ To keep a consistent remark, we shall re-use the previous data. Please be
 advised, we need to ascertain symmetricity before proceeding with a one-sample
 Wilcoxon test. To do so, we may refer to a skewness measure of our data. When
 we have a negative value, it means our data is left skewed, *vice versa*.
-Acquiring the skewness, we may use the range of $[-1, 1]$ to decide that our
+Acquiring the skewness, we may use the range of `\([-1, 1]\)` to decide that our
 data does not present with a severe skewness impairing its symmetricity.
 
-```{r one.sample.sign1}
+``` r
+# Generate a skewed data using a Chi-squared distribution
+set.seed(1)
+x <- rchisq(10, 4) %T>% print()
 ```
 
-```{r one.sample.wilcox1}
+    ##  [1] 1.66 7.14 6.93 4.10 7.77 5.08 4.58 2.30 1.36 1.67
+
+``` r
 # Add columns to data frame
 tbl$ranked <- rank(tbl$abs.diff)
-
 ```
 
-```{r one.sample.wilcox2, echo=FALSE}
-knitr::kable(tbl, format="simple")
-```
+|    x | abs.diff | sign | ranked |
+|-----:|---------:|-----:|-------:|
+| 1.66 |    3.338 |   -1 |      9 |
+| 7.14 |    2.142 |    1 |      5 |
+| 6.93 |    1.926 |    1 |      4 |
+| 4.10 |    0.898 |   -1 |      3 |
+| 7.77 |    2.771 |    1 |      7 |
+| 5.08 |    0.081 |    1 |      1 |
+| 4.58 |    0.424 |   -1 |      2 |
+| 2.30 |    2.701 |   -1 |      6 |
+| 1.36 |    3.638 |   -1 |     10 |
+| 1.67 |    3.329 |   -1 |      8 |
 
-```{r one.sample.wilcox3}
-
+``` r
 # Calculate the statistics
 W <- tapply(tbl$ranked, tbl$sign, sum) %>% min() %T>% print()
+```
 
+    ## [1] 17
+
+``` r
 # Find the p-value for a two-tailed test
 psignrank(W, nrow(tbl)) * 2
+```
 
+    ## [1] 0.322
+
+``` r
 # Built-in test
 wilcox.test(x, data=tbl, mu=5)
 ```
+
+    ## 
+    ##  Wilcoxon signed rank exact test
+    ## 
+    ## data:  x
+    ## V = 17, p-value = 0.3
+    ## alternative hypothesis: true location is not equal to 5
 
 # Two-Sample Test
 
@@ -259,48 +269,70 @@ have to assign a rank to each value in order to compare both groups.
 
 ## Example, please?
 
-```{r two.sample.wilcox1}
-
+``` r
 # We will use x as the first group
 x
+```
 
+    ##  [1] 1.66 7.14 6.93 4.10 7.77 5.08 4.58 2.30 1.36 1.67
+
+``` r
 # Assign x+4 as the second group, make a data frame
 tbl <- data.frame(
-	obs=c(x, x+4), 
-	group=rep(c("1", "2"), each=length(x)) %>% factor()
+    obs=c(x, x+4), 
+    group=rep(c("1", "2"), each=length(x)) %>% factor()
 ) %T>% str()
-
 ```
 
-```{r two.sample.wilcox2}
+    ## 'data.frame':    20 obs. of  2 variables:
+    ##  $ obs  : num  1.66 7.14 6.93 4.1 7.77 ...
+    ##  $ group: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
 
+``` r
 # Goodness of fit test to determine the distribution
 tapply(tbl$obs, tbl$group, ks.test, pnorm) %>% lapply(broom::tidy) %>%
-	lapply(data.frame) %>% {do.call(rbind, .)} %>% kable(format="simple")
-
+    lapply(data.frame) %>% {do.call(rbind, .)} %>% kable(format="simple")
 ```
 
-```{r plt.tbl, echo=FALSE}
+| statistic | p.value | method                             | alternative |
+|----------:|--------:|:-----------------------------------|:------------|
+|     0.913 |       0 | One-sample Kolmogorov-Smirnov test | two-sided   |
+|     1.000 |       0 | One-sample Kolmogorov-Smirnov test | two-sided   |
 
-ggplot(tbl, aes(x=obs, y=..density.., color=group, fill=group)) +
-	geom_density(alpha=0.6) + theme_minimal() +
-	geom_vline(xintercept=tapply(tbl$obs, tbl$group, median), linetype=2, color=c("red", "cyan")) +
-	annotate("text", label=c("M 1", "M 2"), x=tapply(tbl$obs, tbl$group, median) + 0.1, y=0.1, hjust="left")
-
-```
+<img src="{{< blogdown/postref >}}index_files/figure-html/plt.tbl-1.png" width="100%" />
 
 As we can see, both data presented with a non-normal distribution. Thus,
 comparing both observations will require a non-parametric test. Here we employ
 Mann-Whitney U test and compute the effect size.
 
-```{r two.sample.wilcox3}
+``` r
 wilcox.test(obs ~ group, data=tbl, conf.int=TRUE)
+```
+
+    ## 
+    ##  Wilcoxon rank sum exact test
+    ## 
+    ## data:  obs by group
+    ## W = 12, p-value = 0.003
+    ## alternative hypothesis: true location shift is not equal to 0
+    ## 95 percent confidence interval:
+    ##  -6.74 -1.26
+    ## sample estimates:
+    ## difference in location 
+    ##                     -4
+
+``` r
 rstatix::wilcox_effsize(obs ~ group, data=tbl)
 ```
 
+    ## # A tibble: 1 × 7
+    ##   .y.   group1 group2 effsize    n1    n2 magnitude
+    ## * <chr> <chr>  <chr>    <dbl> <int> <int> <ord>    
+    ## 1 obs   1      2        0.642    10    10 large
+
 # Paired Test
 
-In previous tests, we always assume I.I.D. In case of paired data, i.e. when an
+In previous tests, we always assume I.I.D. In case of paired data, i.e. when an
 observation influencing another, we need to take into consideration their
 relationship. Unfortunately, Mann-Whitney U could not discern such a relation
 between data point, as it only looks at the difference in rank. In paired
@@ -321,21 +353,52 @@ In the previous lecture about ANOVA, we are using `ChickWeight` dataset. We
 happened to observe a non-normally distributed data for two group of times.
 Here, we will further examine both groups to understand the difference.
 
-```{r paired.wilcox1}
+``` r
 # We will use the ChickWeight dataset
 str(ChickWeight)
 ```
 
-```{r paired.wilcox2}
+    ## Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':   578 obs. of  4 variables:
+    ##  $ weight: num  42 51 59 64 76 93 106 125 149 171 ...
+    ##  $ Time  : num  0 2 4 6 8 10 12 14 16 18 ...
+    ##  $ Chick : Ord.factor w/ 50 levels "18"<"16"<"15"<..: 15 15 15 15 15 15 15 15 15 15 ...
+    ##  $ Diet  : Factor w/ 4 levels "1","2","3","4": 1 1 1 1 1 1 1 1 1 1 ...
+    ##  - attr(*, "formula")=Class 'formula'  language weight ~ Time | Chick
+    ##   .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv> 
+    ##  - attr(*, "outer")=Class 'formula'  language ~Diet
+    ##   .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv> 
+    ##  - attr(*, "labels")=List of 2
+    ##   ..$ x: chr "Time"
+    ##   ..$ y: chr "Body weight"
+    ##  - attr(*, "units")=List of 2
+    ##   ..$ x: chr "(days)"
+    ##   ..$ y: chr "(gm)"
+
+``` r
 # Assess normality
 tapply(ChickWeight$weight, ChickWeight$Time, shapiro.test) %>% lapply(broom::tidy) %>%
-	lapply(data.frame) %>% {do.call(rbind, .)} %>% knitr::kable(format="simple")
+    lapply(data.frame) %>% {do.call(rbind, .)} %>% knitr::kable(format="simple")
 ```
 
-After assessing normality, we see that both $T=0$ and $T=2$ not to follow a
+|     | statistic | p.value | method                      |
+|-----|----------:|--------:|:----------------------------|
+| 0   |     0.890 |   0.000 | Shapiro-Wilk normality test |
+| 2   |     0.873 |   0.000 | Shapiro-Wilk normality test |
+| 4   |     0.973 |   0.315 | Shapiro-Wilk normality test |
+| 6   |     0.982 |   0.648 | Shapiro-Wilk normality test |
+| 8   |     0.980 |   0.577 | Shapiro-Wilk normality test |
+| 10  |     0.981 |   0.616 | Shapiro-Wilk normality test |
+| 12  |     0.983 |   0.686 | Shapiro-Wilk normality test |
+| 14  |     0.973 |   0.325 | Shapiro-Wilk normality test |
+| 16  |     0.986 |   0.830 | Shapiro-Wilk normality test |
+| 18  |     0.991 |   0.975 | Shapiro-Wilk normality test |
+| 20  |     0.991 |   0.968 | Shapiro-Wilk normality test |
+| 21  |     0.986 |   0.869 | Shapiro-Wilk normality test |
+
+After assessing normality, we see that both `\(T=0\)` and `\(T=2\)` not to follow a
 normal distribution.
 
-```{r paired.wilcox3}
+``` r
 # Subset the dataset to exclude normally distributed data
 tbl <- subset(ChickWeight, subset={ChickWeight$Time %in% c(0, 2)})
 
@@ -344,14 +407,34 @@ tbl$Time %<>% factor(levels=c(0, 2))
 ```
 
 Since we are interested to observe differences in non-normal distribution, here
-we subset the data to only include observation in group $T_0$ and $T_2$. Then
-we turn our variables into a factor, where we set $T_0$ as our group of
+we subset the data to only include observation in group `\(T_0\)` and `\(T_2\)`. Then
+we turn our variables into a factor, where we set `\(T_0\)` as our group of
 reference.
 
-```{r paired.wilcox4}
+``` r
 # Perform a paired Wilcoxon test
 wilcox.test(weight ~ Time, data=tbl, paired=TRUE, conf.int=TRUE)
+```
+
+    ## 
+    ##  Wilcoxon signed rank test with continuity correction
+    ## 
+    ## data:  weight by Time
+    ## V = 8, p-value = 1e-09
+    ## alternative hypothesis: true location shift is not equal to 0
+    ## 95 percent confidence interval:
+    ##  -9.0 -7.5
+    ## sample estimates:
+    ## (pseudo)median 
+    ##           -8.5
+
+``` r
 rstatix::wilcox_effsize(weight ~ Time, data=tbl, paired=TRUE)
 ```
+
+    ## # A tibble: 1 × 7
+    ##   .y.    group1 group2 effsize    n1    n2 magnitude
+    ## * <chr>  <chr>  <chr>    <dbl> <int> <int> <ord>    
+    ## 1 weight 0      2        0.862    50    50 large
 
 Lastly, we can perform a paired Wilcoxon test and its associated effect size.

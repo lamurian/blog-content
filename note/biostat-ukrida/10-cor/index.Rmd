@@ -111,7 +111,7 @@ tbl <- subset(iris, select=c(Sepal.Length, Sepal.Width)) %>%
 	inset("x.resid", value={iris$Sepal.Length - mean(iris$Sepal.Length)}) %>%
 	inset("y.resid", value={iris$Sepal.Width - mean(iris$Sepal.Width)})
 
-tbl %>% head() %>% knitr::kable()
+tbl %>% head() %>% knitr::kable(format="simple")
 
 ```
 
@@ -217,7 +217,7 @@ for the univariate normality.
 
 ```{r pearson1}
 lapply(tbl, shapiro.test) %>% lapply(broom::tidy) %>% lapply(data.frame) %>%
-	{do.call(rbind, .)} %>% kable()
+	{do.call(rbind, .)} %>% kable(format="simple")
 ```
 
 ```{r pearson2, echo=FALSE, fig.height=8}

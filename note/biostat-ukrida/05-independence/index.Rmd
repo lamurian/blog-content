@@ -80,8 +80,8 @@ H_a &: P(X=6) \neq 0.5
 \end{align}
 
 ```{r prop.1, echo=FALSE}
-binom.test(6, 10, 0.5) %>% broom::tidy() %>% kable(caption="Binomial test")
-prop.test(6, 10, 0.5) %>% broom::tidy() %>% kable(caption="Proportion test")
+binom.test(6, 10, 0.5) %>% broom::tidy() %>% kable(format="simple", caption="Binomial test")
+prop.test(6, 10, 0.5) %>% broom::tidy() %>% kable(format="simple", caption="Proportion test")
 ```
 
 Using an approximation, the proportion test gives a slightly different results
@@ -98,8 +98,8 @@ H_a &: P(X=60) \neq 0.5
 \end{align}
 
 ```{r prop.2, echo=FALSE}
-binom.test(60, 100, 0.5) %>% broom::tidy() %>% kable(caption="Binomial test")
-prop.test(60, 100, 0.5) %>% broom::tidy() %>% kable(caption="Proportion test")
+binom.test(60, 100, 0.5) %>% broom::tidy() %>% kable(format="simple", caption="Binomial test")
+prop.test(60, 100, 0.5) %>% broom::tidy() %>% kable(format="simple", caption="Proportion test")
 ```
 
 With a larger sample size, the proportion test gives a better estimation of the
@@ -126,7 +126,7 @@ exposure <- paste("Exposure", 1:2)
 outcomes <- paste("Outcome", 1:2)
 xtab <- matrix(c("a", "c", "b", "d"), nrow=2) %>%
 	set_rownames(exposure) %>% set_colnames(outcomes)
-kable(xtab)
+kable(xtab, format="simple")
 ```
 
 To help us visualize a contingency table, suppose we are conducting a market
@@ -143,7 +143,7 @@ chain.store <- c("Indomaret", "Alfamart")
 resid.areas <- c("Suburban", "Urban")
 survey <- matrix(c(30, 20, 20, 30), nrow=2) %>%
 	set_colnames(chain.store) %>% set_rownames(resid.areas)
-kable(survey)
+kable(survey, format="simple")
 	
 ```
 
@@ -216,7 +216,7 @@ extreme events which satisfy $(a,b,c,d) \in \{(31,19,19,31),...,(50,0,0,50)\}$.
 
 tbl <- data.frame(a=30:50, b=20:0, c=20:0, d=30:50)
 tbl$probability <- apply(tbl, 1, fisher.eq)
-knitr::kable(tbl)
+knitr::kable(tbl, format="simple")
 
 ```
 
@@ -349,7 +349,7 @@ before <- c("Indomaret", "Alfamart")
 after <- c("Indomaret", "Alfamart")
 survey2 <- matrix(c(25, 20, 25, 30), nrow=2) %>%
 	set_colnames(after) %>% set_rownames(before)
-kable(survey2) %>% kable_paper(full_width=FALSE, "hover")
+kable(survey2, format="simple")
 ```
 
 Then, we will set our hypothesis as:
