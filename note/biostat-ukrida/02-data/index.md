@@ -602,7 +602,7 @@ ks.test(X, pexp, rate=2)
 ```
 
     ## 
-    ##  One-sample Kolmogorov-Smirnov test
+    ##  Asymptotic one-sample Kolmogorov-Smirnov test
     ## 
     ## data:  X
     ## D = 0.084, p-value = 0.5
@@ -724,7 +724,7 @@ ks.test(X2, pchisq, df=1)
 ```
 
     ## 
-    ##  One-sample Kolmogorov-Smirnov test
+    ##  Asymptotic one-sample Kolmogorov-Smirnov test
     ## 
     ## data:  X2
     ## D = 0.1, p-value = 0.2

@@ -504,12 +504,12 @@ t.test(bp ~ time, data=tbl, paired=TRUE)
     ## 
     ## data:  bp by time
     ## t = 2, df = 29, p-value = 0.08
-    ## alternative hypothesis: true difference in means is not equal to 0
+    ## alternative hypothesis: true mean difference is not equal to 0
     ## 95 percent confidence interval:
     ##  -0.64 12.10
     ## sample estimates:
-    ## mean of the differences 
-    ##                    5.73
+    ## mean difference 
+    ##            5.73
 
 ## Choosing an Appropriate Test
 

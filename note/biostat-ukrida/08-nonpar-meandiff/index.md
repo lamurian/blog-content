@@ -294,10 +294,10 @@ tapply(tbl$obs, tbl$group, ks.test, pnorm) %>% lapply(broom::tidy) %>%
     lapply(data.frame) %>% {do.call(rbind, .)} %>% kable(format="simple")
 ```
 
-| statistic | p.value | method                             | alternative |
-|----------:|--------:|:-----------------------------------|:------------|
-|     0.913 |       0 | One-sample Kolmogorov-Smirnov test | two-sided   |
-|     1.000 |       0 | One-sample Kolmogorov-Smirnov test | two-sided   |
+| statistic | p.value | method                                   | alternative |
+|----------:|--------:|:-----------------------------------------|:------------|
+|     0.913 |       0 | Exact one-sample Kolmogorov-Smirnov test | two-sided   |
+|     1.000 |       0 | Exact one-sample Kolmogorov-Smirnov test | two-sided   |
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/plt.tbl-1.png" width="100%" />
 
