@@ -76,7 +76,7 @@ X <- rnorm(10, mean=160, sd=10)
 print(X)
 ```
 
-    ##  [1] 153.7 161.8 151.6 176.0 163.3 151.8 164.9 167.4 165.8 156.9
+    |  [1] 153.7 161.8 151.6 176.0 163.3 151.8 164.9 167.4 165.8 156.9
 
 We can refer each data point according to its index. If we were to extract a
 particular element, e.g. the 7<sup>th</sup> element from `\(X\)`, we can do so by referring
@@ -86,7 +86,7 @@ particular element, e.g. the 7<sup>th</sup> element from `\(X\)`, we can do so 
 print(X[7])
 ```
 
-    ## [1] 164.9
+    | [1] 164.9
 
 Understanding what data are and how we transform data into a mathematical array is
 an important aspect to comprehend how statistics work in general.
@@ -102,7 +102,7 @@ the exact number of element by running following code:
 length(X)
 ```
 
-    ## [1] 10
+    | [1] 10
 
 # Proportion
 
@@ -122,13 +122,13 @@ X <- rnorm(10, mean=160, sd=10)
 print(X)
 ```
 
-    ##  [1] 153.7 161.8 151.6 176.0 163.3 151.8 164.9 167.4 165.8 156.9
+    |  [1] 153.7 161.8 151.6 176.0 163.3 151.8 164.9 167.4 165.8 156.9
 
 ``` r
 sum(X > 165) / length(X)
 ```
 
-    ## [1] 0.3
+    | [1] 0.3
 
 # Mean
 
@@ -145,7 +145,7 @@ Of course, we can manually get the mean value in `R` by instructing:
 sum(X) / length(X)
 ```
 
-    ## [1] 161.3
+    | [1] 161.3
 
 However, `R` has a nice built-in function to perform the calculation on our
 behalf. To calculate the mean, we need to use -wait for it- `mean`.
@@ -154,7 +154,7 @@ behalf. To calculate the mean, we need to use -wait for it- `mean`.
 mean(X)
 ```
 
-    ## [1] 161.3
+    | [1] 161.3
 
 The problem is, not all data *distributed evenly*. A quick glance on our
 histogram and density plot, revealed following figure:
@@ -182,7 +182,7 @@ To visualize the process, let us demonstrate the sorting algorithm:
 sort(X)
 ```
 
-    ##  [1] 151.6 151.8 153.7 156.9 161.8 163.3 164.9 165.8 167.4 176.0
+    |  [1] 151.6 151.8 153.7 156.9 161.8 163.3 164.9 165.8 167.4 176.0
 
 Then computing the median location:
 
@@ -190,7 +190,7 @@ Then computing the median location:
 median(X)
 ```
 
-    ## [1] 162.6
+    | [1] 162.6
 
 # Standard Deviation
 
@@ -204,14 +204,14 @@ X <- rnorm(10, mean=160, sd=10)
 print(X)
 ```
 
-    ##  [1] 153.7 161.8 151.6 176.0 163.3 151.8 164.9 167.4 165.8 156.9
+    |  [1] 153.7 161.8 151.6 176.0 163.3 151.8 164.9 167.4 165.8 156.9
 
 ``` r
 d <- X - mean(X)
 print(d, digits=2)
 ```
 
-    ##  [1] -7.59  0.51 -9.68 14.63  1.97 -9.53  3.55  6.06  4.44 -4.38
+    |  [1] -7.59  0.51 -9.68 14.63  1.97 -9.53  3.55  6.06  4.44 -4.38
 
 The presence of both values makes it harder for us to find their general
 property! It would not make sense to find the mean nor median in such cases,
@@ -227,14 +227,14 @@ d <- abs(X - mean(X))
 print(d, digits=2)
 ```
 
-    ##  [1]  7.59  0.51  9.68 14.63  1.97  9.53  3.55  6.06  4.44  4.38
+    |  [1]  7.59  0.51  9.68 14.63  1.97  9.53  3.55  6.06  4.44  4.38
 
 ``` r
 d.bar <- mean(d)
 print(d.bar, digits=2)
 ```
 
-    ## [1] 6.2
+    | [1] 6.2
 
 Now, it’s easier to report our findings as `\(\bar{x} \pm \bar{d}\)`, or
 numerically as 161.32 `\(\pm\)`
@@ -252,7 +252,7 @@ std.dev <- sqrt(sum({X - mean(X)}^2) / length(X))
 print(std.dev)
 ```
 
-    ## [1] 7.4
+    | [1] 7.4
 
 Pleased be advised, thus far we only calculate the *parametric* value of
 standard deviation. Since we only have a sample, we need to estimate the actual
@@ -268,13 +268,13 @@ std.dev <- sqrt(sum({X - mean(X)}^2) / {length(X) - 1})
 print(std.dev)
 ```
 
-    ## [1] 7.8
+    | [1] 7.8
 
 ``` r
 sd(X) # Built-in function to calculate standard deviation
 ```
 
-    ## [1] 7.8
+    | [1] 7.8
 
 Please notice a slight difference prior to applying Bessel’s correction.
 
@@ -306,7 +306,7 @@ Our ordered data:
 sort(X)
 ```
 
-    ##  [1] 152 152 154 157 162 163 165 166 167 176
+    |  [1] 152 152 154 157 162 163 165 166 167 176
 
 If we were to separate it into a quantile of 0.2, we will get groups as follow:
 
@@ -314,8 +314,8 @@ If we were to separate it into a quantile of 0.2, we will get groups as follow:
 quantile(X, probs=seq(0, 1, 1/5))
 ```
 
-    ##   0%  20%  40%  60%  80% 100% 
-    ##  152  153  160  164  166  176
+    |   0%  20%  40%  60%  80% 100% 
+    |  152  153  160  164  166  176
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/hist.quantile1-1.png" width="672" />
 
@@ -326,8 +326,8 @@ Quartile is a special case of quantile, where it considers $q = \{0.25, 0.5, 0.7
 quantile(X, probs=seq(0, 1, 1/4))
 ```
 
-    ##   0%  25%  50%  75% 100% 
-    ##  152  155  163  166  176
+    |   0%  25%  50%  75% 100% 
+    |  152  155  163  166  176
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/hist.quantile2-1.png" width="672" />
 

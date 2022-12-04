@@ -119,7 +119,7 @@ set.seed(1)
 x <- rchisq(10, 4) %T>% print()
 ```
 
-    ##  [1] 1.66 7.14 6.93 4.10 7.77 5.08 4.58 2.30 1.36 1.67
+    |  [1] 1.66 7.14 6.93 4.10 7.77 5.08 4.58 2.30 1.36 1.67
 
 In this example, we have `\(X \sim \chi^2(4)\)`, presenting as a skewed data.
 Should we let `\(H_0\)` be `\(M=5\)` and we are interested to conduct a two-tailed
@@ -211,7 +211,7 @@ set.seed(1)
 x <- rchisq(10, 4) %T>% print()
 ```
 
-    ##  [1] 1.66 7.14 6.93 4.10 7.77 5.08 4.58 2.30 1.36 1.67
+    |  [1] 1.66 7.14 6.93 4.10 7.77 5.08 4.58 2.30 1.36 1.67
 
 ``` r
 # Add columns to data frame
@@ -236,26 +236,26 @@ tbl$ranked <- rank(tbl$abs.diff)
 W <- tapply(tbl$ranked, tbl$sign, sum) %>% min() %T>% print()
 ```
 
-    ## [1] 17
+    | [1] 17
 
 ``` r
 # Find the p-value for a two-tailed test
 psignrank(W, nrow(tbl)) * 2
 ```
 
-    ## [1] 0.322
+    | [1] 0.322
 
 ``` r
 # Built-in test
 wilcox.test(x, data=tbl, mu=5)
 ```
 
-    ## 
-    ##  Wilcoxon signed rank exact test
-    ## 
-    ## data:  x
-    ## V = 17, p-value = 0.3
-    ## alternative hypothesis: true location is not equal to 5
+    | 
+    |   Wilcoxon signed rank exact test
+    | 
+    | data:  x
+    | V = 17, p-value = 0.3
+    | alternative hypothesis: true location is not equal to 5
 
 # Two-Sample Test
 
@@ -274,7 +274,7 @@ have to assign a rank to each value in order to compare both groups.
 x
 ```
 
-    ##  [1] 1.66 7.14 6.93 4.10 7.77 5.08 4.58 2.30 1.36 1.67
+    |  [1] 1.66 7.14 6.93 4.10 7.77 5.08 4.58 2.30 1.36 1.67
 
 ``` r
 # Assign x+4 as the second group, make a data frame
@@ -284,9 +284,9 @@ tbl <- data.frame(
 ) %T>% str()
 ```
 
-    ## 'data.frame':    20 obs. of  2 variables:
-    ##  $ obs  : num  1.66 7.14 6.93 4.1 7.77 ...
-    ##  $ group: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+    | 'data.frame': 20 obs. of  2 variables:
+    |  $ obs  : num  1.66 7.14 6.93 4.1 7.77 ...
+    |  $ group: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
 
 ``` r
 # Goodness of fit test to determine the distribution
@@ -309,26 +309,26 @@ Mann-Whitney U test and compute the effect size.
 wilcox.test(obs ~ group, data=tbl, conf.int=TRUE)
 ```
 
-    ## 
-    ##  Wilcoxon rank sum exact test
-    ## 
-    ## data:  obs by group
-    ## W = 12, p-value = 0.003
-    ## alternative hypothesis: true location shift is not equal to 0
-    ## 95 percent confidence interval:
-    ##  -6.74 -1.26
-    ## sample estimates:
-    ## difference in location 
-    ##                     -4
+    | 
+    |   Wilcoxon rank sum exact test
+    | 
+    | data:  obs by group
+    | W = 12, p-value = 0.003
+    | alternative hypothesis: true location shift is not equal to 0
+    | 95 percent confidence interval:
+    |  -6.74 -1.26
+    | sample estimates:
+    | difference in location 
+    |                     -4
 
 ``` r
 rstatix::wilcox_effsize(obs ~ group, data=tbl)
 ```
 
-    ## # A tibble: 1 × 7
-    ##   .y.   group1 group2 effsize    n1    n2 magnitude
-    ## * <chr> <chr>  <chr>    <dbl> <int> <int> <ord>    
-    ## 1 obs   1      2        0.642    10    10 large
+    | # A tibble: 1 × 7
+    |   .y.   group1 group2 effsize    n1    n2 magnitude
+    | * <chr> <chr>  <chr>    <dbl> <int> <int> <ord>    
+    | 1 obs   1      2        0.642    10    10 large
 
 # Paired Test
 
@@ -358,21 +358,21 @@ Here, we will further examine both groups to understand the difference.
 str(ChickWeight)
 ```
 
-    ## Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':   578 obs. of  4 variables:
-    ##  $ weight: num  42 51 59 64 76 93 106 125 149 171 ...
-    ##  $ Time  : num  0 2 4 6 8 10 12 14 16 18 ...
-    ##  $ Chick : Ord.factor w/ 50 levels "18"<"16"<"15"<..: 15 15 15 15 15 15 15 15 15 15 ...
-    ##  $ Diet  : Factor w/ 4 levels "1","2","3","4": 1 1 1 1 1 1 1 1 1 1 ...
-    ##  - attr(*, "formula")=Class 'formula'  language weight ~ Time | Chick
-    ##   .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv> 
-    ##  - attr(*, "outer")=Class 'formula'  language ~Diet
-    ##   .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv> 
-    ##  - attr(*, "labels")=List of 2
-    ##   ..$ x: chr "Time"
-    ##   ..$ y: chr "Body weight"
-    ##  - attr(*, "units")=List of 2
-    ##   ..$ x: chr "(days)"
-    ##   ..$ y: chr "(gm)"
+    | Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':    578 obs. of  4 variables:
+    |  $ weight: num  42 51 59 64 76 93 106 125 149 171 ...
+    |  $ Time  : num  0 2 4 6 8 10 12 14 16 18 ...
+    |  $ Chick : Ord.factor w/ 50 levels "18"<"16"<"15"<..: 15 15 15 15 15 15 15 15 15 15 ...
+    |  $ Diet  : Factor w/ 4 levels "1","2","3","4": 1 1 1 1 1 1 1 1 1 1 ...
+    |  - attr(*, "formula")=Class 'formula'  language weight ~ Time | Chick
+    |   .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv> 
+    |  - attr(*, "outer")=Class 'formula'  language ~Diet
+    |   .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv> 
+    |  - attr(*, "labels")=List of 2
+    |   ..$ x: chr "Time"
+    |   ..$ y: chr "Body weight"
+    |  - attr(*, "units")=List of 2
+    |   ..$ x: chr "(days)"
+    |   ..$ y: chr "(gm)"
 
 ``` r
 # Assess normality
@@ -416,25 +416,25 @@ reference.
 wilcox.test(weight ~ Time, data=tbl, paired=TRUE, conf.int=TRUE)
 ```
 
-    ## 
-    ##  Wilcoxon signed rank test with continuity correction
-    ## 
-    ## data:  weight by Time
-    ## V = 8, p-value = 1e-09
-    ## alternative hypothesis: true location shift is not equal to 0
-    ## 95 percent confidence interval:
-    ##  -9.0 -7.5
-    ## sample estimates:
-    ## (pseudo)median 
-    ##           -8.5
+    | 
+    |   Wilcoxon signed rank test with continuity correction
+    | 
+    | data:  weight by Time
+    | V = 8, p-value = 1e-09
+    | alternative hypothesis: true location shift is not equal to 0
+    | 95 percent confidence interval:
+    |  -9.0 -7.5
+    | sample estimates:
+    | (pseudo)median 
+    |           -8.5
 
 ``` r
 rstatix::wilcox_effsize(weight ~ Time, data=tbl, paired=TRUE)
 ```
 
-    ## # A tibble: 1 × 7
-    ##   .y.    group1 group2 effsize    n1    n2 magnitude
-    ## * <chr>  <chr>  <chr>    <dbl> <int> <int> <ord>    
-    ## 1 weight 0      2        0.862    50    50 large
+    | # A tibble: 1 × 7
+    |   .y.    group1 group2 effsize    n1    n2 magnitude
+    | * <chr>  <chr>  <chr>    <dbl> <int> <int> <ord>    
+    | 1 weight 0      2        0.862    50    50 large
 
 Lastly, we can perform a paired Wilcoxon test and its associated effect size.

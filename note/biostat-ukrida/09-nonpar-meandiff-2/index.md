@@ -86,17 +86,17 @@ from an ELISA assay, where it has three variables of interest:
 str(DNase)
 ```
 
-    ## Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':   176 obs. of  3 variables:
-    ##  $ Run    : Ord.factor w/ 11 levels "10"<"11"<"9"<..: 4 4 4 4 4 4 4 4 4 4 ...
-    ##  $ conc   : num  0.0488 0.0488 0.1953 0.1953 0.3906 ...
-    ##  $ density: num  0.017 0.018 0.121 0.124 0.206 0.215 0.377 0.374 0.614 0.609 ...
-    ##  - attr(*, "formula")=Class 'formula'  language density ~ conc | Run
-    ##   .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv> 
-    ##  - attr(*, "labels")=List of 2
-    ##   ..$ x: chr "DNase concentration"
-    ##   ..$ y: chr "Optical density"
-    ##  - attr(*, "units")=List of 1
-    ##   ..$ x: chr "(ng/ml)"
+    | Classes 'nfnGroupedData', 'nfGroupedData', 'groupedData' and 'data.frame':    176 obs. of  3 variables:
+    |  $ Run    : Ord.factor w/ 11 levels "10"<"11"<"9"<..: 4 4 4 4 4 4 4 4 4 4 ...
+    |  $ conc   : num  0.0488 0.0488 0.1953 0.1953 0.3906 ...
+    |  $ density: num  0.017 0.018 0.121 0.124 0.206 0.215 0.377 0.374 0.614 0.609 ...
+    |  - attr(*, "formula")=Class 'formula'  language density ~ conc | Run
+    |   .. ..- attr(*, ".Environment")=<environment: R_EmptyEnv> 
+    |  - attr(*, "labels")=List of 2
+    |   ..$ x: chr "DNase concentration"
+    |   ..$ y: chr "Optical density"
+    |  - attr(*, "units")=List of 1
+    |   ..$ x: chr "(ng/ml)"
 
 Here we have both `conc` and `density` as a numeric variable, while `Run` as a
 ordinal variable with 11 levels. `R` use the word `level` to describe the
@@ -133,10 +133,10 @@ not follow the normal distribution.
 with(DNase, car::leveneTest(conc, Run))
 ```
 
-    ## Levene's Test for Homogeneity of Variance (center = median)
-    ##        Df F value Pr(>F)
-    ## group  10       0      1
-    ##       165
+    | Levene's Test for Homogeneity of Variance (center = median)
+    |        Df F value Pr(>F)
+    | group  10       0      1
+    |       165
 
 From the Levene’s test, we found out that our data has a roughly equal
 intergroup variances. So we have fulfilled two important assumptions in
@@ -147,20 +147,20 @@ variance.
 kruskal.test(conc ~ Run, data=DNase)
 ```
 
-    ## 
-    ##  Kruskal-Wallis rank sum test
-    ## 
-    ## data:  conc by Run
-    ## Kruskal-Wallis chi-squared = 0, df = 10, p-value = 1
+    | 
+    |   Kruskal-Wallis rank sum test
+    | 
+    | data:  conc by Run
+    | Kruskal-Wallis chi-squared = 0, df = 10, p-value = 1
 
 ``` r
 rstatix::kruskal_effsize(conc ~ Run, data=DNase)
 ```
 
-    ## # A tibble: 1 × 5
-    ##   .y.       n effsize method  magnitude
-    ## * <chr> <int>   <dbl> <chr>   <ord>    
-    ## 1 conc    176 -0.0606 eta2[H] moderate
+    | # A tibble: 1 × 5
+    |   .y.       n effsize method  magnitude
+    | * <chr> <int>   <dbl> <chr>   <ord>    
+    | 1 conc    176 -0.0606 eta2[H] moderate
 
 Then we can proceed by calculating the H statistics, its p-value and the effect
 size.
@@ -169,63 +169,63 @@ size.
 dunn.test::dunn.test(DNase$conc, DNase$Run)
 ```
 
-    ##   Kruskal-Wallis rank sum test
-    ## 
-    ## data: x and group
-    ## Kruskal-Wallis chi-squared = 0, df = 10, p-value = 1
-    ## 
-    ## 
-    ##                            Comparison of x by group                            
-    ##                                 (No adjustment)                                
-    ## Col Mean-|
-    ## Row Mean |          1         10         11          2          3          4
-    ## ---------+------------------------------------------------------------------
-    ##       10 |   0.000000
-    ##          |     0.5000
-    ##          |
-    ##       11 |   0.000000   0.000000
-    ##          |     0.5000     0.5000
-    ##          |
-    ##        2 |   0.000000   0.000000   0.000000
-    ##          |     0.5000     0.5000     0.5000
-    ##          |
-    ##        3 |   0.000000   0.000000   0.000000   0.000000
-    ##          |     0.5000     0.5000     0.5000     0.5000
-    ##          |
-    ##        4 |   0.000000   0.000000   0.000000   0.000000   0.000000
-    ##          |     0.5000     0.5000     0.5000     0.5000     0.5000
-    ##          |
-    ##        5 |   0.000000   0.000000   0.000000   0.000000   0.000000   0.000000
-    ##          |     0.5000     0.5000     0.5000     0.5000     0.5000     0.5000
-    ##          |
-    ##        6 |   0.000000   0.000000   0.000000   0.000000   0.000000   0.000000
-    ##          |     0.5000     0.5000     0.5000     0.5000     0.5000     0.5000
-    ##          |
-    ##        7 |   0.000000   0.000000   0.000000   0.000000   0.000000   0.000000
-    ##          |     0.5000     0.5000     0.5000     0.5000     0.5000     0.5000
-    ##          |
-    ##        8 |   0.000000   0.000000   0.000000   0.000000   0.000000   0.000000
-    ##          |     0.5000     0.5000     0.5000     0.5000     0.5000     0.5000
-    ##          |
-    ##        9 |   0.000000   0.000000   0.000000   0.000000   0.000000   0.000000
-    ##          |     0.5000     0.5000     0.5000     0.5000     0.5000     0.5000
-    ## Col Mean-|
-    ## Row Mean |          5          6          7          8
-    ## ---------+--------------------------------------------
-    ##        6 |   0.000000
-    ##          |     0.5000
-    ##          |
-    ##        7 |   0.000000   0.000000
-    ##          |     0.5000     0.5000
-    ##          |
-    ##        8 |   0.000000   0.000000   0.000000
-    ##          |     0.5000     0.5000     0.5000
-    ##          |
-    ##        9 |   0.000000   0.000000   0.000000   0.000000
-    ##          |     0.5000     0.5000     0.5000     0.5000
-    ## 
-    ## alpha = 0.05
-    ## Reject Ho if p <= alpha/2
+    |   Kruskal-Wallis rank sum test
+    | 
+    | data: x and group
+    | Kruskal-Wallis chi-squared = 0, df = 10, p-value = 1
+    | 
+    | 
+    |                            Comparison of x by group                            
+    |                                 (No adjustment)                                
+    | Col Mean-|
+    | Row Mean |          1         10         11          2          3          4
+    | ---------+------------------------------------------------------------------
+    |       10 |   0.000000
+    |          |     0.5000
+    |          |
+    |       11 |   0.000000   0.000000
+    |          |     0.5000     0.5000
+    |          |
+    |        2 |   0.000000   0.000000   0.000000
+    |          |     0.5000     0.5000     0.5000
+    |          |
+    |        3 |   0.000000   0.000000   0.000000   0.000000
+    |          |     0.5000     0.5000     0.5000     0.5000
+    |          |
+    |        4 |   0.000000   0.000000   0.000000   0.000000   0.000000
+    |          |     0.5000     0.5000     0.5000     0.5000     0.5000
+    |          |
+    |        5 |   0.000000   0.000000   0.000000   0.000000   0.000000   0.000000
+    |          |     0.5000     0.5000     0.5000     0.5000     0.5000     0.5000
+    |          |
+    |        6 |   0.000000   0.000000   0.000000   0.000000   0.000000   0.000000
+    |          |     0.5000     0.5000     0.5000     0.5000     0.5000     0.5000
+    |          |
+    |        7 |   0.000000   0.000000   0.000000   0.000000   0.000000   0.000000
+    |          |     0.5000     0.5000     0.5000     0.5000     0.5000     0.5000
+    |          |
+    |        8 |   0.000000   0.000000   0.000000   0.000000   0.000000   0.000000
+    |          |     0.5000     0.5000     0.5000     0.5000     0.5000     0.5000
+    |          |
+    |        9 |   0.000000   0.000000   0.000000   0.000000   0.000000   0.000000
+    |          |     0.5000     0.5000     0.5000     0.5000     0.5000     0.5000
+    | Col Mean-|
+    | Row Mean |          5          6          7          8
+    | ---------+--------------------------------------------
+    |        6 |   0.000000
+    |          |     0.5000
+    |          |
+    |        7 |   0.000000   0.000000
+    |          |     0.5000     0.5000
+    |          |
+    |        8 |   0.000000   0.000000   0.000000
+    |          |     0.5000     0.5000     0.5000
+    |          |
+    |        9 |   0.000000   0.000000   0.000000   0.000000
+    |          |     0.5000     0.5000     0.5000     0.5000
+    | 
+    | alpha = 0.05
+    | Reject Ho if p <= alpha/2
 
 Lastly, we conducted a Dunn’s test to ascertain pairwise differences in our
 data.
@@ -256,10 +256,10 @@ readily available in `R`.
 str(warpbreaks)
 ```
 
-    ## 'data.frame':    54 obs. of  3 variables:
-    ##  $ breaks : num  26 30 54 25 70 52 51 26 67 18 ...
-    ##  $ wool   : Factor w/ 2 levels "A","B": 1 1 1 1 1 1 1 1 1 1 ...
-    ##  $ tension: Factor w/ 3 levels "L","M","H": 1 1 1 1 1 1 1 1 1 2 ...
+    | 'data.frame': 54 obs. of  3 variables:
+    |  $ breaks : num  26 30 54 25 70 52 51 26 67 18 ...
+    |  $ wool   : Factor w/ 2 levels "A","B": 1 1 1 1 1 1 1 1 1 1 ...
+    |  $ tension: Factor w/ 3 levels "L","M","H": 1 1 1 1 1 1 1 1 1 2 ...
 
 This dataset consists of three variables, namely `breaks`, `wool` and
 `tension`. The `warpbreak` dataset describes how a different type of wool
@@ -276,32 +276,32 @@ wp <- aggregate(warpbreaks$breaks,
 ) %T>% print()
 ```
 
-    ##   w t    x
-    ## 1 A L 44.6
-    ## 2 B L 28.2
-    ## 3 A M 24.0
-    ## 4 B M 28.8
-    ## 5 A H 24.6
-    ## 6 B H 18.8
+    |   w t    x
+    | 1 A L 44.6
+    | 2 B L 28.2
+    | 3 A M 24.0
+    | 4 B M 28.8
+    | 5 A H 24.6
+    | 6 B H 18.8
 
 ``` r
 friedman.test(x ~ w | t, data=wp)
 ```
 
-    ## 
-    ##  Friedman rank sum test
-    ## 
-    ## data:  x and w and t
-    ## Friedman chi-squared = 0.3, df = 1, p-value = 0.6
+    | 
+    |   Friedman rank sum test
+    | 
+    | data:  x and w and t
+    | Friedman chi-squared = 0.3, df = 1, p-value = 0.6
 
 ``` r
 rstatix::friedman_effsize(x ~ w | t, data=wp)
 ```
 
-    ## # A tibble: 1 × 5
-    ##   .y.       n effsize method    magnitude
-    ## * <chr> <int>   <dbl> <chr>     <ord>    
-    ## 1 x         3   0.111 Kendall W small
+    | # A tibble: 1 × 5
+    |   .y.       n effsize method    magnitude
+    | * <chr> <int>   <dbl> <chr>     <ord>    
+    | 1 x         3   0.111 Kendall W small
 
 Friedman’s test determines the difference among various blocks. Essentially, a
 block is a description of two interacting variables, which in this case are

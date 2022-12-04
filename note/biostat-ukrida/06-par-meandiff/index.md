@@ -112,7 +112,7 @@ obtain the two-tailed p-value.
 2 * {1 - pnorm(2.12, 0, 1)}
 ```
 
-    ## [1] 0.034
+    | [1] 0.034
 
 So far, we understand that Z-test requires the sample to follow a normal
 distribution. Before conducting any formal test, it is imperative to ascertain
@@ -163,14 +163,14 @@ and spread.
 summary(x)
 ```
 
-    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##    75.7   112.3   127.2   123.8   135.2   151.9
+    |    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    |    75.7   112.3   127.2   123.8   135.2   151.9
 
 ``` r
 sd(x)
 ```
 
-    ## [1] 18.3
+    | [1] 18.3
 
 We let `\(x \sim N(120, 20)\)`, yet our `\(\bar{x}\)` is 123.81 with an `\(s\)` of `r sd(s)` and a `\(\nu\)` of 19. Does our statistics differ from the parameter
 `\(\mu=120\)`? We can further formulate our question into hypotheses:
@@ -183,7 +183,7 @@ Then we can determine the `\(t\)` statistics:
 t <- {{mean(x) - 120} / {sd(x) / sqrt(20)}} %T>% print()
 ```
 
-    ## [1] 0.933
+    | [1] 0.933
 
 Then we shall locate `\(t\)` statistics into its distribution of `\(t_{19}\)`:
 
@@ -197,7 +197,7 @@ Then we can compute the p-value for a one-tailed test:
 1 - pt(t, df=19)
 ```
 
-    ## [1] 0.181
+    | [1] 0.181
 
 Also the p-value for a two-tailed test:
 
@@ -207,7 +207,7 @@ Also the p-value for a two-tailed test:
 2 * {1 - pt(t, df=19)}
 ```
 
-    ## [1] 0.363
+    | [1] 0.363
 
 How does our calculation compare to the built-in function in `R`?
 
@@ -215,17 +215,17 @@ How does our calculation compare to the built-in function in `R`?
 t.test(x, mu=120)
 ```
 
-    ## 
-    ##  One Sample t-test
-    ## 
-    ## data:  x
-    ## t = 0.9, df = 19, p-value = 0.4
-    ## alternative hypothesis: true mean is not equal to 120
-    ## 95 percent confidence interval:
-    ##  115 132
-    ## sample estimates:
-    ## mean of x 
-    ##       124
+    | 
+    |   One Sample t-test
+    | 
+    | data:  x
+    | t = 0.9, df = 19, p-value = 0.4
+    | alternative hypothesis: true mean is not equal to 120
+    | 95 percent confidence interval:
+    |  115 132
+    | sample estimates:
+    | mean of x 
+    |       124
 
 At this point, we may have realised `R` only prints the rounded value for
 acquired computation. If we are interested to see the actual value, we may save
@@ -237,7 +237,7 @@ t.result <- t.test(x, mu=120)
 t.result$p.value
 ```
 
-    ## [1] 0.363
+    | [1] 0.363
 
 Comparing our computation and the result acquired from `R` built-in function,
 we failed to reject our `\(H_0\)`, so we conclude `\(\bar{x}=\mu_0=120\)`.
@@ -310,20 +310,20 @@ tbl <- data.frame(
 tapply(tbl$height, tbl$sex, summary)
 ```
 
-    ## $female
-    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##     123     146     154     158     173     190 
-    ## 
-    ## $male
-    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##     152     165     168     170     177     184
+    | $female
+    |    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    |     123     146     154     158     173     190 
+    | 
+    | $male
+    |    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    |     152     165     168     170     177     184
 
 ``` r
 tapply(tbl$height, tbl$sex, sd)
 ```
 
-    ## female   male 
-    ##  17.98   7.93
+    | female   male 
+    |  17.98   7.93
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/two.sample.t2-1.png" width="100%" />
 
@@ -333,20 +333,20 @@ Do both groups in our sample follow a normal distribution?
 tapply(tbl$height, tbl$sex, shapiro.test)
 ```
 
-    ## $female
-    ## 
-    ##  Shapiro-Wilk normality test
-    ## 
-    ## data:  X[[i]]
-    ## W = 1, p-value = 0.7
-    ## 
-    ## 
-    ## $male
-    ## 
-    ##  Shapiro-Wilk normality test
-    ## 
-    ## data:  X[[i]]
-    ## W = 1, p-value = 0.2
+    | $female
+    | 
+    |   Shapiro-Wilk normality test
+    | 
+    | data:  X[[i]]
+    | W = 1, p-value = 0.7
+    | 
+    | 
+    | $male
+    | 
+    |   Shapiro-Wilk normality test
+    | 
+    | data:  X[[i]]
+    | W = 1, p-value = 0.2
 
 Considering both p-values being `\(\geqslant 0.05\)` in Shapiro-Wilk test, we can
 ascertain their normality. We then tested for homogeneity of variance using
@@ -356,12 +356,12 @@ Lavene’s test:
 car::leveneTest(tbl$height ~ tbl$sex)
 ```
 
-    ## Levene's Test for Homogeneity of Variance (center = median)
-    ##       Df F value  Pr(>F)    
-    ## group  1    14.3 0.00039 ***
-    ##       53                    
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    | Levene's Test for Homogeneity of Variance (center = median)
+    |       Df F value  Pr(>F)    
+    | group  1    14.3 0.00039 ***
+    |       53                    
+    | ---
+    | Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Interpreting a low p-value, we can conclude variances in both groups are not
 equal to one another. In this case, we will follow Welch’s method.
@@ -370,17 +370,17 @@ equal to one another. In this case, we will follow Welch’s method.
 t.test(height ~ sex, data=tbl, var.equal=FALSE)
 ```
 
-    ## 
-    ##  Welch Two Sample t-test
-    ## 
-    ## data:  height by sex
-    ## t = -3, df = 32, p-value = 0.004
-    ## alternative hypothesis: true difference in means between group female and group male is not equal to 0
-    ## 95 percent confidence interval:
-    ##  -19.87  -4.07
-    ## sample estimates:
-    ## mean in group female   mean in group male 
-    ##                  158                  170
+    | 
+    |   Welch Two Sample t-test
+    | 
+    | data:  height by sex
+    | t = -3, df = 32, p-value = 0.004
+    | alternative hypothesis: true difference in means between group female and group male is not equal to 0
+    | 95 percent confidence interval:
+    |  -19.87  -4.07
+    | sample estimates:
+    | mean in group female   mean in group male 
+    |                  158                  170
 
 Just for curiosity sake, we may want to try Student’s method as well and see
 how it is different from Welch’s:
@@ -389,17 +389,17 @@ how it is different from Welch’s:
 t.test(height ~ sex, data=tbl, var.equal=TRUE)
 ```
 
-    ## 
-    ##  Two Sample t-test
-    ## 
-    ## data:  height by sex
-    ## t = -3, df = 53, p-value = 0.002
-    ## alternative hypothesis: true difference in means between group female and group male is not equal to 0
-    ## 95 percent confidence interval:
-    ##  -19.27  -4.67
-    ## sample estimates:
-    ## mean in group female   mean in group male 
-    ##                  158                  170
+    | 
+    |   Two Sample t-test
+    | 
+    | data:  height by sex
+    | t = -3, df = 53, p-value = 0.002
+    | alternative hypothesis: true difference in means between group female and group male is not equal to 0
+    | 95 percent confidence interval:
+    |  -19.27  -4.67
+    | sample estimates:
+    | mean in group female   mean in group male 
+    |                  158                  170
 
 The Student’s T-test reported a lower p-value compared to Welch’s T-test
 when we have unequal variance. A low p-value is not a bad sign per se, but we
@@ -468,48 +468,48 @@ md <- with(tbl, bp[time=="Before"] - bp[time=="After"])
 t <- {mean(md)} / {sd(md) / sqrt(30)} %T>% print()
 ```
 
-    ## [1] 3.12
+    | [1] 3.12
 
 ``` r
 # Obtain p-value for a two-sided test
 2 * {1 - pt(t, df=29)}
 ```
 
-    ## [1] 0.076
+    | [1] 0.076
 
 ``` r
 # Comparison to built-in one-sample T-Test
 t.test(md, mu=0)
 ```
 
-    ## 
-    ##  One Sample t-test
-    ## 
-    ## data:  md
-    ## t = 2, df = 29, p-value = 0.08
-    ## alternative hypothesis: true mean is not equal to 0
-    ## 95 percent confidence interval:
-    ##  -0.64 12.10
-    ## sample estimates:
-    ## mean of x 
-    ##      5.73
+    | 
+    |   One Sample t-test
+    | 
+    | data:  md
+    | t = 2, df = 29, p-value = 0.08
+    | alternative hypothesis: true mean is not equal to 0
+    | 95 percent confidence interval:
+    |  -0.64 12.10
+    | sample estimates:
+    | mean of x 
+    |      5.73
 
 ``` r
 # Comparison to built-in paired T-Test
 t.test(bp ~ time, data=tbl, paired=TRUE)
 ```
 
-    ## 
-    ##  Paired t-test
-    ## 
-    ## data:  bp by time
-    ## t = 2, df = 29, p-value = 0.08
-    ## alternative hypothesis: true mean difference is not equal to 0
-    ## 95 percent confidence interval:
-    ##  -0.64 12.10
-    ## sample estimates:
-    ## mean difference 
-    ##            5.73
+    | 
+    |   Paired t-test
+    | 
+    | data:  bp by time
+    | t = 2, df = 29, p-value = 0.08
+    | alternative hypothesis: true mean difference is not equal to 0
+    | 95 percent confidence interval:
+    |  -0.64 12.10
+    | sample estimates:
+    | mean difference 
+    |            5.73
 
 ## Choosing an Appropriate Test
 
@@ -553,14 +553,14 @@ md <- with(tbl, bp[time=="Before"] - bp[time=="After"])
 t <- {mean(md)} / {sd(md) / sqrt(30)} %T>% print()
 ```
 
-    ## [1] 3.12
+    | [1] 3.12
 
 ``` r
 # Obtain p-value for a two-sided test
 2 * {1 - pt(t, df=29)}
 ```
 
-    ## [1] 0.076
+    | [1] 0.076
 
 We will calculate `\(d\)` by issuing following command in `R`. Beware though,
 different method of computing also exists as we can be more flexible in
@@ -575,7 +575,7 @@ sp <- sqrt({with(tbl,
 } / 2) %T>% print()
 ```
 
-    ## [1] 12.4
+    | [1] 12.4
 
 ``` r
 # Measure Cohen's distance
@@ -584,7 +584,7 @@ sp <- sqrt({with(tbl,
 } / sp
 ```
 
-    ## [1] 0.464
+    | [1] 0.464
 
 As a comparison, we can also compute `\(d\)` using the `psych` package.
 
@@ -593,16 +593,16 @@ As a comparison, we can also compute `\(d\)` using the `psych` package.
 d <- psych::cohen.d(tbl ~ time) %T>% print()
 ```
 
-    ## Call: psych::cohen.d(x = tbl ~ time)
-    ## Cohen d statistic of difference between two means
-    ##    lower effect upper
-    ## bp -0.98  -0.47  0.04
-    ## 
-    ## Multivariate (Mahalanobis) distance between groups
-    ## [1] 0.47
-    ## r equivalent of difference between two means
-    ##    bp 
-    ## -0.23
+    | Call: psych::cohen.d(x = tbl ~ time)
+    | Cohen d statistic of difference between two means
+    |    lower effect upper
+    | bp -0.98  -0.47  0.04
+    | 
+    | Multivariate (Mahalanobis) distance between groups
+    | [1] 0.47
+    | r equivalent of difference between two means
+    |    bp 
+    | -0.23
 
 Finally, we can apply `\(d\)` to computing the statistical power:
 
@@ -611,13 +611,13 @@ Finally, we can apply `\(d\)` to computing the statistical power:
 pwr::pwr.t.test(n=30, d=d$cohen.d[[2]], sig.level=0.05, type="paired")
 ```
 
-    ## 
-    ##      Paired t test power calculation 
-    ## 
-    ##               n = 30
-    ##               d = 0.472
-    ##       sig.level = 0.05
-    ##           power = 0.704
-    ##     alternative = two.sided
-    ## 
-    ## NOTE: n is number of *pairs*
+    | 
+    |      Paired t test power calculation 
+    | 
+    |               n = 30
+    |               d = 0.472
+    |       sig.level = 0.05
+    |           power = 0.704
+    |     alternative = two.sided
+    | 
+    | NOTE: n is number of *pairs*

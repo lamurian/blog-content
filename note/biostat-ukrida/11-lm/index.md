@@ -72,22 +72,22 @@ minimizing the error `\(\epsilon\)`.
 str(iris)
 ```
 
-    ## 'data.frame':    150 obs. of  5 variables:
-    ##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
-    ##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
-    ##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
-    ##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
-    ##  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+    | 'data.frame': 150 obs. of  5 variables:
+    |  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+    |  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+    |  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+    |  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+    |  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
 
 ``` r
 subset(iris, select=-Species) %>% cor()
 ```
 
-    ##              Sepal.Length Sepal.Width Petal.Length Petal.Width
-    ## Sepal.Length         1.00       -0.12         0.87        0.82
-    ## Sepal.Width         -0.12        1.00        -0.43       -0.37
-    ## Petal.Length         0.87       -0.43         1.00        0.96
-    ## Petal.Width          0.82       -0.37         0.96        1.00
+    |              Sepal.Length Sepal.Width Petal.Length Petal.Width
+    | Sepal.Length         1.00       -0.12         0.87        0.82
+    | Sepal.Width         -0.12        1.00        -0.43       -0.37
+    | Petal.Length         0.87       -0.43         1.00        0.96
+    | Petal.Width          0.82       -0.37         0.96        1.00
 
 There is a seemingly good correlation between sepal length and petal width. We
 will use both variables as our dependent and independent variable,
@@ -98,17 +98,17 @@ respectively. We will initially perform a correlation analysis, using the
 with(iris, cor.test(Sepal.Length, Petal.Length))
 ```
 
-    ## 
-    ##  Pearson's product-moment correlation
-    ## 
-    ## data:  Sepal.Length and Petal.Length
-    ## t = 22, df = 148, p-value <2e-16
-    ## alternative hypothesis: true correlation is not equal to 0
-    ## 95 percent confidence interval:
-    ##  0.83 0.91
-    ## sample estimates:
-    ##  cor 
-    ## 0.87
+    | 
+    |   Pearson's product-moment correlation
+    | 
+    | data:  Sepal.Length and Petal.Length
+    | t = 22, df = 148, p-value <2e-16
+    | alternative hypothesis: true correlation is not equal to 0
+    | 95 percent confidence interval:
+    |  0.83 0.91
+    | sample estimates:
+    |  cor 
+    | 0.87
 
 Then we will model the linearity between sepal length and petal length using
 `lm()`.
@@ -117,24 +117,24 @@ Then we will model the linearity between sepal length and petal length using
 mod1 <- lm(Sepal.Length ~ Petal.Length, data=iris) %T>% {print(summary(.))}
 ```
 
-    ## 
-    ## Call:
-    ## lm(formula = Sepal.Length ~ Petal.Length, data = iris)
-    ## 
-    ## Residuals:
-    ##     Min      1Q  Median      3Q     Max 
-    ## -1.2468 -0.2966 -0.0152  0.2768  1.0027 
-    ## 
-    ## Coefficients:
-    ##              Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept)    4.3066     0.0784    54.9   <2e-16 ***
-    ## Petal.Length   0.4089     0.0189    21.6   <2e-16 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Residual standard error: 0.41 on 148 degrees of freedom
-    ## Multiple R-squared:  0.76,   Adjusted R-squared:  0.758 
-    ## F-statistic:  469 on 1 and 148 DF,  p-value: <2e-16
+    | 
+    | Call:
+    | lm(formula = Sepal.Length ~ Petal.Length, data = iris)
+    | 
+    | Residuals:
+    |     Min      1Q  Median      3Q     Max 
+    | -1.2468 -0.2966 -0.0152  0.2768  1.0027 
+    | 
+    | Coefficients:
+    |              Estimate Std. Error t value Pr(>|t|)    
+    | (Intercept)    4.3066     0.0784    54.9   <2e-16 ***
+    | Petal.Length   0.4089     0.0189    21.6   <2e-16 ***
+    | ---
+    | Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+    | 
+    | Residual standard error: 0.41 on 148 degrees of freedom
+    | Multiple R-squared:  0.76,    Adjusted R-squared:  0.758 
+    | F-statistic:  469 on 1 and 148 DF,  p-value: <2e-16
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/plt.mod1-1.png" width="90%" />
 

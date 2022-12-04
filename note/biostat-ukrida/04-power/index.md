@@ -52,7 +52,7 @@ set.seed(1)
 coin <- sample(c("H", "T"), 10, replace=TRUE, prob=rep(1/2, 2)) %T>% print()
 ```
 
-    ##  [1] "T" "T" "H" "H" "T" "H" "H" "H" "H" "T"
+    |  [1] "T" "T" "H" "H" "T" "H" "H" "H" "H" "T"
 
 As always, we set `H` as our outcome of interest. After observing ten coin
 tosses, we may find the appeal to formulate our hypotheses, where we may say:
@@ -67,17 +67,17 @@ binomial distribution. But, does it? :)
 binom.test(x=sum(coin == "H"), n=length(coin), p=0.5)
 ```
 
-    ## 
-    ##  Exact binomial test
-    ## 
-    ## data:  sum(coin == "H") and length(coin)
-    ## number of successes = 6, number of trials = 10, p-value = 0.8
-    ## alternative hypothesis: true probability of success is not equal to 0.5
-    ## 95 percent confidence interval:
-    ##  0.2624 0.8784
-    ## sample estimates:
-    ## probability of success 
-    ##                    0.6
+    | 
+    |   Exact binomial test
+    | 
+    | data:  sum(coin == "H") and length(coin)
+    | number of successes = 6, number of trials = 10, p-value = 0.8
+    | alternative hypothesis: true probability of success is not equal to 0.5
+    | 95 percent confidence interval:
+    |  0.2624 0.8784
+    | sample estimates:
+    | probability of success 
+    |                    0.6
 
 At this point, we have seen binomial test numerous times, yet we have not
 unravel the secret behind this math! Why did we *fail to reject* the `\(H_0\)`? Or
@@ -95,7 +95,7 @@ probability. To find a `\(P(X=6): X \sim B(10, 0.5)\)`, `R` uses following comma
 dbinom(6, 10, 0.5)
 ```
 
-    ## [1] 0.2051
+    | [1] 0.2051
 
 We can manually calculate the p-value as the .amber\[sum\] of `\(P(X \geqslant 6)\)`.
 
@@ -103,7 +103,7 @@ We can manually calculate the p-value as the .amber\[sum\] of `\(P(X \geqslant 6
 2 * (dbinom(6:10, 10, 0.5) %>% sum())
 ```
 
-    ## [1] 0.7539
+    | [1] 0.7539
 
 So we could not distinguish a relative probability of 0.6 and 0.5
 from a ten consecutive coin tosses. Interesting. How if we preserve the ratio
@@ -118,7 +118,7 @@ using the Binomial probability function:
 dbinom(60, 100, 0.5)
 ```
 
-    ## [1] 0.01084
+    | [1] 0.01084
 
 And the p-value would be:
 
@@ -126,7 +126,7 @@ And the p-value would be:
 2 * (dbinom(60:100, 100, 0.5) %>% sum())
 ```
 
-    ## [1] 0.05689
+    | [1] 0.05689
 
 We preserved the ratio, why has the probability changed? The reason lies in the
 number of trial we conducted. We have observed how the peak and distribution
@@ -169,17 +169,17 @@ using the Binomial test:
 binom.test(35, 50, 0.5, alternative="greater")
 ```
 
-    ## 
-    ##  Exact binomial test
-    ## 
-    ## data:  35 and 50
-    ## number of successes = 35, number of trials = 50, p-value = 0.003
-    ## alternative hypothesis: true probability of success is greater than 0.5
-    ## 95 percent confidence interval:
-    ##  0.5763 1.0000
-    ## sample estimates:
-    ## probability of success 
-    ##                    0.7
+    | 
+    |   Exact binomial test
+    | 
+    | data:  35 and 50
+    | number of successes = 35, number of trials = 50, p-value = 0.003
+    | alternative hypothesis: true probability of success is greater than 0.5
+    | 95 percent confidence interval:
+    |  0.5763 1.0000
+    | sample estimates:
+    | probability of success 
+    |                    0.7
 
 With a nice visualization, we can see where our hypothesis located relative to
 the midpoint (hint: the blue dot).
@@ -322,7 +322,7 @@ h0 <- 0.5; size <- 50; alpha.rate <- 0.05
 alpha.value <- qbinom(1 - alpha.rate, size, prob=h0) %T>% print()
 ```
 
-    ## [1] 31
+    | [1] 31
 
 ``` r
 # Determine H1
@@ -332,14 +332,14 @@ h1 <- 0.7
 beta.value <- dbinom(0:alpha.value, size, prob=h1) %>% sum() %T>% print()
 ```
 
-    ## [1] 0.1406
+    | [1] 0.1406
 
 ``` r
 # Calculate power
 1 - beta.value
 ```
 
-    ## [1] 0.8594
+    | [1] 0.8594
 
 Now, that is better :) If you find it hard to understand what’s going on, you
 may want to focus on commented section (any line started by `#`), as they

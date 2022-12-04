@@ -85,9 +85,9 @@ generalized linear model (glm).
 tbl <- subset(iris, select=c(Sepal.Width, Sepal.Length)) %>% str()
 ```
 
-    ## 'data.frame':    150 obs. of  2 variables:
-    ##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
-    ##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+    | 'data.frame': 150 obs. of  2 variables:
+    |  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+    |  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
 
 In this example, we will use a subset of the `iris` dataset, which we have
 grown accustomed to. This subset will only include two variables, `Sepal.Width`
@@ -126,13 +126,13 @@ resulted from a built-in function in `R`.
 covariance(tbl$x, tbl$y)
 ```
 
-    ## [1] -0.042
+    | [1] -0.042
 
 ``` r
 cov(tbl$x, tbl$y) # Built-in function
 ```
 
-    ## [1] -0.042
+    | [1] -0.042
 
 It is also interesting to explore what will happen if we calculate covariances of
 the same variable. As it turns out, the covariance of the same variable is its
@@ -142,13 +142,13 @@ variance!
 covariance(tbl$x, tbl$x)
 ```
 
-    ## [1] 0.69
+    | [1] 0.69
 
 ``` r
 var(tbl$x) # Variance of x
 ```
 
-    ## [1] 0.69
+    | [1] 0.69
 
 It is pretty straightforward if we closely evaluate the equation:
 
@@ -161,21 +161,21 @@ that to in `R` using the `cov` function.
 tbl <- subset(iris, select=-Species) %T>% str()
 ```
 
-    ## 'data.frame':    150 obs. of  4 variables:
-    ##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
-    ##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
-    ##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
-    ##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+    | 'data.frame': 150 obs. of  4 variables:
+    |  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+    |  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+    |  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+    |  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
 
 ``` r
 cov(tbl)
 ```
 
-    ##              Sepal.Length Sepal.Width Petal.Length Petal.Width
-    ## Sepal.Length        0.686      -0.042         1.27        0.52
-    ## Sepal.Width        -0.042       0.190        -0.33       -0.12
-    ## Petal.Length        1.274      -0.330         3.12        1.30
-    ## Petal.Width         0.516      -0.122         1.30        0.58
+    |              Sepal.Length Sepal.Width Petal.Length Petal.Width
+    | Sepal.Length        0.686      -0.042         1.27        0.52
+    | Sepal.Width        -0.042       0.190        -0.33       -0.12
+    | Petal.Length        1.274      -0.330         3.12        1.30
+    | Petal.Width         0.516      -0.122         1.30        0.58
 
 # Pearson’s `\(r\)`
 
@@ -250,19 +250,19 @@ subset(tbl, select=c(Sepal.Length, Sepal.Width)) %>%
     MVN::mvn() # Multivariate normality
 ```
 
-    ## $multivariateNormality
-    ##            Test  HZ p value MVN
-    ## 1 Henze-Zirkler 2.9   8e-07  NO
-    ## 
-    ## $univariateNormality
-    ##               Test     Variable Statistic   p value Normality
-    ## 1 Anderson-Darling Sepal.Length      0.89     0.022    NO    
-    ## 2 Anderson-Darling Sepal.Width       0.91     0.020    NO    
-    ## 
-    ## $Descriptives
-    ##                n Mean Std.Dev Median Min Max 25th 75th Skew Kurtosis
-    ## Sepal.Length 150  5.8    0.83    5.8 4.3 7.9  5.1  6.4 0.31    -0.61
-    ## Sepal.Width  150  3.1    0.44    3.0 2.0 4.4  2.8  3.3 0.31     0.14
+    | $multivariateNormality
+    |            Test  HZ p value MVN
+    | 1 Henze-Zirkler 2.9   8e-07  NO
+    | 
+    | $univariateNormality
+    |               Test     Variable Statistic   p value Normality
+    | 1 Anderson-Darling Sepal.Length      0.89     0.022    NO    
+    | 2 Anderson-Darling Sepal.Width       0.91     0.020    NO    
+    | 
+    | $Descriptives
+    |                n Mean Std.Dev Median Min Max 25th 75th Skew Kurtosis
+    | Sepal.Length 150  5.8    0.83    5.8 4.3 7.9  5.1  6.4 0.31    -0.61
+    | Sepal.Width  150  3.1    0.44    3.0 2.0 4.4  2.8  3.3 0.31     0.14
 
 Using the Mardia’s test to calculate skewness and kurtosis of a joint
 distribution, we see that a joint distribution of `Sepal.Width` and
@@ -274,17 +274,17 @@ arguments of sample variables.
 cor.test(tbl$Sepal.Length, tbl$Sepal.Width)
 ```
 
-    ## 
-    ##  Pearson's product-moment correlation
-    ## 
-    ## data:  tbl$Sepal.Length and tbl$Sepal.Width
-    ## t = -1, df = 148, p-value = 0.2
-    ## alternative hypothesis: true correlation is not equal to 0
-    ## 95 percent confidence interval:
-    ##  -0.273  0.044
-    ## sample estimates:
-    ##   cor 
-    ## -0.12
+    | 
+    |   Pearson's product-moment correlation
+    | 
+    | data:  tbl$Sepal.Length and tbl$Sepal.Width
+    | t = -1, df = 148, p-value = 0.2
+    | alternative hypothesis: true correlation is not equal to 0
+    | 95 percent confidence interval:
+    |  -0.273  0.044
+    | sample estimates:
+    |   cor 
+    | -0.12
 
 The correlation coefficient `\(r\)` will have a range of value `\([-1, 1]\)`, where it
 reflects the trend and magnitude of a relationship between two numeric
@@ -346,35 +346,35 @@ on using the subset of an `iris` dataset just to keep this example simple.
 tbl <- subset(iris, select=-Species) %T>% str()
 ```
 
-    ## 'data.frame':    150 obs. of  4 variables:
-    ##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
-    ##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
-    ##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
-    ##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+    | 'data.frame': 150 obs. of  4 variables:
+    |  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+    |  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+    |  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+    |  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
 
 ``` r
 cov(tbl)
 ```
 
-    ##              Sepal.Length Sepal.Width Petal.Length Petal.Width
-    ## Sepal.Length        0.686      -0.042         1.27        0.52
-    ## Sepal.Width        -0.042       0.190        -0.33       -0.12
-    ## Petal.Length        1.274      -0.330         3.12        1.30
-    ## Petal.Width         0.516      -0.122         1.30        0.58
+    |              Sepal.Length Sepal.Width Petal.Length Petal.Width
+    | Sepal.Length        0.686      -0.042         1.27        0.52
+    | Sepal.Width        -0.042       0.190        -0.33       -0.12
+    | Petal.Length        1.274      -0.330         3.12        1.30
+    | Petal.Width         0.516      -0.122         1.30        0.58
 
 ``` r
 cor.test(tbl$Sepal.Length, tbl$Sepal.Width, method="spearman")
 ```
 
-    ## 
-    ##  Spearman's rank correlation rho
-    ## 
-    ## data:  tbl$Sepal.Length and tbl$Sepal.Width
-    ## S = 7e+05, p-value = 0.04
-    ## alternative hypothesis: true rho is not equal to 0
-    ## sample estimates:
-    ##   rho 
-    ## -0.17
+    | 
+    |   Spearman's rank correlation rho
+    | 
+    | data:  tbl$Sepal.Length and tbl$Sepal.Width
+    | S = 7e+05, p-value = 0.04
+    | alternative hypothesis: true rho is not equal to 0
+    | sample estimates:
+    |   rho 
+    | -0.17
 
 As in `\(r\)`, the value of `\(\rho\)` will fall in the range between `\([-1, 1]\)`, where
 it respectively describes a negative and positive trend. The magnitude in
@@ -422,35 +422,35 @@ Again, this example will use the same data subset.
 tbl <- subset(iris, select=-Species) %T>% str()
 ```
 
-    ## 'data.frame':    150 obs. of  4 variables:
-    ##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
-    ##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
-    ##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
-    ##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+    | 'data.frame': 150 obs. of  4 variables:
+    |  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+    |  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+    |  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+    |  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
 
 ``` r
 cov(tbl)
 ```
 
-    ##              Sepal.Length Sepal.Width Petal.Length Petal.Width
-    ## Sepal.Length        0.686      -0.042         1.27        0.52
-    ## Sepal.Width        -0.042       0.190        -0.33       -0.12
-    ## Petal.Length        1.274      -0.330         3.12        1.30
-    ## Petal.Width         0.516      -0.122         1.30        0.58
+    |              Sepal.Length Sepal.Width Petal.Length Petal.Width
+    | Sepal.Length        0.686      -0.042         1.27        0.52
+    | Sepal.Width        -0.042       0.190        -0.33       -0.12
+    | Petal.Length        1.274      -0.330         3.12        1.30
+    | Petal.Width         0.516      -0.122         1.30        0.58
 
 ``` r
 cor.test(tbl$Sepal.Length, tbl$Sepal.Width, method="kendall")
 ```
 
-    ## 
-    ##  Kendall's rank correlation tau
-    ## 
-    ## data:  tbl$Sepal.Length and tbl$Sepal.Width
-    ## z = -1, p-value = 0.2
-    ## alternative hypothesis: true tau is not equal to 0
-    ## sample estimates:
-    ##    tau 
-    ## -0.077
+    | 
+    |   Kendall's rank correlation tau
+    | 
+    | data:  tbl$Sepal.Length and tbl$Sepal.Width
+    | z = -1, p-value = 0.2
+    | alternative hypothesis: true tau is not equal to 0
+    | sample estimates:
+    |    tau 
+    | -0.077
 
 The value of `\(\tau\)` is in the range of `\([0, 1]\)`, with any sign of `\(\tau < 0\)` being an
 artefact. So, when interpreting the `\(\tau\)`, we will only take the absolute

@@ -209,7 +209,7 @@ set.seed(1)
 coin <- sample(c("H", "T"), 10, replace=TRUE, prob=rep(1/2, 2)) %T>% print()
 ```
 
-    ##  [1] "T" "T" "H" "H" "T" "H" "H" "H" "H" "T"
+    |  [1] "T" "T" "H" "H" "T" "H" "H" "H" "H" "T"
 
 Now, we will formulate hypotheses on our coin flip and determine
 whether or not to reject the `\(H_0\)`.
@@ -229,17 +229,17 @@ binomial distribution. So, we will test our hypotheses using a binomial test.
 binom.test(x={sum(coin=="H")}, n=length(coin), p=0.5)
 ```
 
-    ## 
-    ##  Exact binomial test
-    ## 
-    ## data:  {     sum(coin == "H") } and length(coin)
-    ## number of successes = 6, number of trials = 10, p-value = 0.8
-    ## alternative hypothesis: true probability of success is not equal to 0.5
-    ## 95 percent confidence interval:
-    ##  0.262 0.878
-    ## sample estimates:
-    ## probability of success 
-    ##                    0.6
+    | 
+    |   Exact binomial test
+    | 
+    | data:  {     sum(coin == "H") } and length(coin)
+    | number of successes = 6, number of trials = 10, p-value = 0.8
+    | alternative hypothesis: true probability of success is not equal to 0.5
+    | 95 percent confidence interval:
+    |  0.262 0.878
+    | sample estimates:
+    | probability of success 
+    |                    0.6
 
 Seeing the p-value \> 0.05, we can formally state the failure on rejecting
 `\(H_0\)`. The following figure represent other examples on null hypothesis:

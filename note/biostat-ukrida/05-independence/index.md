@@ -217,7 +217,7 @@ To calculate p-value in a one-tailed test, we simply sum all the probabilities:
 sum(tbl$probability)
 ```
 
-    ## [1] 0.0357
+    | [1] 0.0357
 
 Having the product of one-tailed p-value multiplied by `\(2\)`, we can get the
 two-tailed p-value:
@@ -226,7 +226,7 @@ two-tailed p-value:
 sum(tbl$probability) * 2
 ```
 
-    ## [1] 0.0713
+    | [1] 0.0713
 
 We can compare our calculation with `R`, which resulted in:
 
@@ -234,13 +234,13 @@ We can compare our calculation with `R`, which resulted in:
 fisher.test(survey, alternative="greater")$p.value
 ```
 
-    ## [1] 0.0357
+    | [1] 0.0357
 
 ``` r
 fisher.test(survey, alternative="two.sided")$p.value
 ```
 
-    ## [1] 0.0713
+    | [1] 0.0713
 
 # Chi-square Test of Independence
 
@@ -309,7 +309,7 @@ a degree of freedom `\(k=1\)`.
 1 - pchisq(4, df=1)
 ```
 
-    ## [1] 0.0455
+    | [1] 0.0455
 
 How does our finding compare to `R`?
 
@@ -317,7 +317,7 @@ How does our finding compare to `R`?
 chisq.test(survey, correct=FALSE)$p.value
 ```
 
-    ## [1] 0.0455
+    | [1] 0.0455
 
 # Test of Independence with Paired Samples
 
@@ -359,11 +359,11 @@ In `R`, we can have the p-value by issuing:
 mcnemar.test(survey2)
 ```
 
-    ## 
-    ##  McNemar's Chi-squared test with continuity correction
-    ## 
-    ## data:  survey2
-    ## McNemar's chi-squared = 0.4, df = 1, p-value = 0.6
+    | 
+    |   McNemar's Chi-squared test with continuity correction
+    | 
+    | data:  survey2
+    | McNemar's chi-squared = 0.4, df = 1, p-value = 0.6
 
 # Applying Yates’ Correction
 

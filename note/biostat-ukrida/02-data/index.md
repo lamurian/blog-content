@@ -159,7 +159,7 @@ set.seed(1)
 S <- sample(c("H", "T"), 10, replace=TRUE, prob=rep(1/2, 2)) %T>% print()
 ```
 
-    ##  [1] "T" "T" "H" "H" "T" "H" "H" "H" "H" "T"
+    |  [1] "T" "T" "H" "H" "T" "H" "H" "H" "H" "T"
 
 Let the head be our expected outcomes, so we can list our event as:
 
@@ -167,7 +167,7 @@ Let the head be our expected outcomes, so we can list our event as:
 E <- S[which(S == "H")] %T>% print()
 ```
 
-    ## [1] "H" "H" "H" "H" "H" "H"
+    | [1] "H" "H" "H" "H" "H" "H"
 
 Thus, we can regard the probability of having a desired outcome as a relative
 frequency of events in a given sample space:
@@ -176,7 +176,7 @@ frequency of events in a given sample space:
 length(E) / length(S)
 ```
 
-    ## [1] 0.6
+    | [1] 0.6
 
 So, ten flips using a fair coin resulted in a
 60% chance of having heads. The method we use so
@@ -232,7 +232,7 @@ We want to know whether our function work:
 dice(1)
 ```
 
-    ## [1] 3
+    | [1] 3
 
 It does! Now, we can safely proceed and roll the dice ten times. Let 4 be our
 outcome of interest. How high is the probability of having the event within 10
@@ -243,7 +243,7 @@ set.seed(1)
 roll <- dice(10) %T>% print()
 ```
 
-    ##  [1] 3 4 5 1 3 1 1 5 5 2
+    |  [1] 3 4 5 1 3 1 1 5 5 2
 
 Turns out, the probability of getting 4 is
 1/10. As we have a fair dice, why is
@@ -287,7 +287,7 @@ df$error <- mapply(function(p.hat, n) {
 }, p.hat=df$prob, n=df$roll) %T>% print()
 ```
 
-    ## [1] 0.0948683 0.0433013 0.0126491 0.0037773 0.0011769 0.0003724 0.0001178
+    | [1] 0.0948683 0.0433013 0.0126491 0.0037773 0.0011769 0.0003724 0.0001178
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/plt.trial-1.png" width="100%" />
 
@@ -545,13 +545,13 @@ set.seed(1)
 S <- sample(c("H", "T"), 10, replace=TRUE, prob=rep(1/2, 2)) %T>% print()
 ```
 
-    ##  [1] "T" "T" "H" "H" "T" "H" "H" "H" "H" "T"
+    |  [1] "T" "T" "H" "H" "T" "H" "H" "H" "H" "T"
 
 ``` r
 length(E) / length(S)
 ```
 
-    ## [1] 0.6
+    | [1] 0.6
 
 If it corresponds with a Bernoulli trial, it should satisfy `\(P(X=6)\)` in such a way
 that we cannot reject the `\(H_0\)` when calculating its probability:
@@ -565,17 +565,17 @@ function in `R`.
 binom.test(x=6, n=10, p=0.5)
 ```
 
-    ## 
-    ##  Exact binomial test
-    ## 
-    ## data:  6 and 10
-    ## number of successes = 6, number of trials = 10, p-value = 0.8
-    ## alternative hypothesis: true probability of success is not equal to 0.5
-    ## 95 percent confidence interval:
-    ##  0.2624 0.8784
-    ## sample estimates:
-    ## probability of success 
-    ##                    0.6
+    | 
+    |   Exact binomial test
+    | 
+    | data:  6 and 10
+    | number of successes = 6, number of trials = 10, p-value = 0.8
+    | alternative hypothesis: true probability of success is not equal to 0.5
+    | 95 percent confidence interval:
+    |  0.2624 0.8784
+    | sample estimates:
+    | probability of success 
+    |                    0.6
 
 Interpreting the p-value, we cannot reject the `\(H_0\)`, so our coin toss followed
 a Bernoulli trial’s probability after all.
@@ -601,12 +601,12 @@ By imputing `\(\lambda\)` variable, Kolmogorov-Smirnov can compute its goodness 
 ks.test(X, pexp, rate=2)
 ```
 
-    ## 
-    ##  Asymptotic one-sample Kolmogorov-Smirnov test
-    ## 
-    ## data:  X
-    ## D = 0.084, p-value = 0.5
-    ## alternative hypothesis: two-sided
+    | 
+    |   Asymptotic one-sample Kolmogorov-Smirnov test
+    | 
+    | data:  X
+    | D = 0.084, p-value = 0.5
+    | alternative hypothesis: two-sided
 
 With p-value \> 0.05, we can confidently keep the `\(H_0\)`, that our data follow a
 certain distribution. In this case, `\(X \sim Exponential(2)\)`.
@@ -656,11 +656,11 @@ constraint, where the sample size of `\(n\)` should be $3 \leqslant n \leqslant 
 shapiro.test(X)
 ```
 
-    ## 
-    ##  Shapiro-Wilk normality test
-    ## 
-    ## data:  X
-    ## W = 1, p-value = 1
+    | 
+    |   Shapiro-Wilk normality test
+    | 
+    | data:  X
+    | W = 1, p-value = 1
 
 ## Anderson-Darling Test
 
@@ -675,11 +675,11 @@ package `nortest`, and it needs at minimum a sample size `\(n\)` of 7.
 nortest::ad.test(X)
 ```
 
-    ## 
-    ##  Anderson-Darling normality test
-    ## 
-    ## data:  X
-    ## A = 0.16, p-value = 0.9
+    | 
+    |   Anderson-Darling normality test
+    | 
+    | data:  X
+    | A = 0.16, p-value = 0.9
 
 ## Visual Examination
 
@@ -708,11 +708,11 @@ X2 <- X^2
 shapiro.test(X2)
 ```
 
-    ## 
-    ##  Shapiro-Wilk normality test
-    ## 
-    ## data:  X2
-    ## W = 0.7, p-value = 5e-13
+    | 
+    |   Shapiro-Wilk normality test
+    | 
+    | data:  X2
+    | W = 0.7, p-value = 5e-13
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/plt.chisq.demo1-1.png" width="100%" />
 
@@ -723,12 +723,12 @@ distribution. But, does it follow a `\(\chi^2\)` distribution?
 ks.test(X2, pchisq, df=1)
 ```
 
-    ## 
-    ##  Asymptotic one-sample Kolmogorov-Smirnov test
-    ## 
-    ## data:  X2
-    ## D = 0.1, p-value = 0.2
-    ## alternative hypothesis: two-sided
+    | 
+    |   Asymptotic one-sample Kolmogorov-Smirnov test
+    | 
+    | data:  X2
+    | D = 0.1, p-value = 0.2
+    | alternative hypothesis: two-sided
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/plt.chisq.demo2-1.png" width="100%" />
 
